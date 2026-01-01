@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2487.7">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="zh-CN"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;歌舞伎町：夜之帝国帝国&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>:root { --main-red: #ff2d55; --bg-dark: #0a0a0c; --card-bg: #16161e; --text-gray: #d1d1d1; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body, html { margin: 0; padding: 0; background: var(--bg-dark); color: var(--text-gray); font-family: 'PingFang SC', 'Hiragino Sans GB', sans-serif; height: 100%; overflow: hidden; }</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* 布局控制 */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#app { display: flex; flex-direction: column; height: 100vh; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#header { background: #111; padding: 10px 15px; border-bottom: 1px solid #222; display: flex; justify-content: space-between; align-items: center; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#game-log { flex: 1; overflow-y: auto; padding: 15px; scroll-behavior: smooth; }</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* 伪代码块样式 - 极致沉浸 */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.pseudo-code {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: var(--card-bg);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 1px solid #333;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-left: 4px solid var(--main-red);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 15px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-bottom: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Consolas', 'Monaco', monospace;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 14px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>line-height: 1.7;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>white-space: pre-wrap;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>word-wrap: break-word;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 4px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 10px 30px rgba(0,0,0,0.5);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #efefef;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* 朋友圈/八卦特定装饰 */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.sns-tag { color: #576b95; font-weight: bold; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.system-tip { color: var(--main-red); font-size: 12px; margin: 10px 0; text-align: center; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* 输入区 */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>#input-area { background: #111; padding: 15px; border-top: 1px solid #222; display: flex; gap: 10px; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>input[type="text"] { flex: 1; background: #222; border: 1px solid #444; color: white; padding: 12px; border-radius: 8px; outline: none; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>input[type="text"]:focus { border-color: var(--main-red); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>button { background: var(--main-red); color: white; border: none; padding: 0 20px; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>button:active { transform: scale(0.95); opacity: 0.8; }</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>/* 响应式调整 */</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@media (max-width: 600px) { .pseudo-code { font-size: 13px; padding: 10px; } }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div id="app"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="header"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span style="color:var(--main-red); font-weight:bold;"&gt;NIGHT EMPIRE v1.0&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="password" id="api-key" placeholder="粘贴 Gemini API Key" style="background:#222; border:1px solid #333; color:white; font-size:10px; padding:5px; border-radius:4px;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="game-log"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="pseudo-code"&gt;</p>
+<p class="p1">✨ 欢迎来到歌舞伎町。</p>
+<p class="p1">系统检测到你已继承一家濒临倒闭的俱乐部。</p>
+<p class="p2"><br></p>
+<p class="p1">[准备步骤]：</p>
+<p class="p1">1. 在上方填入你的 Gemini API Key。</p>
+<p class="p1">2. 在下方输入“开始游戏”并发送。</p>
+<p class="p1">3. 系统将为你初始化主角属性及初始牛郎。</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="loading" style="display:none; text-align:center; padding:10px; color:var(--main-red); font-size:12px;"&gt;Gemini 正在构思极乐之夜...&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="input-area"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;input type="text" id="user-cmd" placeholder="输入你的决策或对话..." onkeypress="if(event.keyCode==13) sendAction()"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;button onclick="sendAction()"&gt;执行&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// 注入你提供的核心设定作为 AI 的“出厂设置”</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const WORLD_SETTING = `</p>
+<p class="p1"><span class="Apple-converted-space">    </span>你现在是文字经营游戏《夜之帝国》的专属引擎。</p>
+<p class="p1"><span class="Apple-converted-space">    </span>【核心规则】：</p>
+<p class="p1"><span class="Apple-converted-space">    </span>1. 严格采用回合制。每回合必须生成：[主角属性]、[牛郎信息板块]、[当前剧情(&gt;800字)]、[牛郎圈朋友圈]、[八卦板块]、[制作日志]。</p>
+<p class="p1"><span class="Apple-converted-space">    </span>2. 语言风格：现代架空小说形式，简洁平实，禁止辞藻华丽，禁止机械式数据。</p>
+<p class="p1"><span class="Apple-converted-space">    </span>3. 禁忌：禁止完结故事，禁止跳跃，禁止超自然力量。</p>
+<p class="p1"><span class="Apple-converted-space">    </span>4. 朋友圈格式：包含“已读/未读”标记，角色名+发言内容。</p>
+<p class="p1"><span class="Apple-converted-space">    </span>5. 互动：每回合末尾必须给出且仅给出一次剧情推进的选择。</p>
+<p class="p1"><span class="Apple-converted-space">    </span>【数值平衡】：</p>
+<p class="p1"><span class="Apple-converted-space">    </span>普通牛郎日耗2000，基础客人消费500。</p>
+<p class="p1"><span class="Apple-converted-space">    </span>请以此为准开始你的创作。`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>let memory = [{ role: "user", parts: [{ text: WORLD_SETTING }] }];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>async function sendAction() {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const key = document.getElementById('api-key').value;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const cmdInput = document.getElementById('user-cmd');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const log = document.getElementById('game-log');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const loader = document.getElementById('loading');</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (!key) return alert("请先输入 API Key！");</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const action = cmdInput.value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (!action) return;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// 渲染用户动作</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const userNode = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>userNode.style = "text-align:right; margin: 10px 0; color:var(--main-red); font-weight:bold;";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>userNode.textContent = action + " &lt;";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>log.appendChild(userNode);</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>cmdInput.value = "";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>loader.style.display = "block";</p>
+<p class="p1"><span class="Apple-converted-space">        </span>log.scrollTop = log.scrollHeight;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>memory.push({ role: "user", parts: [{ text: action }] });</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`, {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>method: 'POST',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>headers: { 'Content-Type': 'application/json' },</p>
+<p class="p1"><span class="Apple-converted-space">                </span>body: JSON.stringify({ contents: memory })</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const data = await response.json();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const reply = data.candidates[0].content.parts[0].text;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// 渲染 AI 伪代码块</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const aiNode = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>aiNode.className = "pseudo-code";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>aiNode.textContent = reply;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>log.appendChild(aiNode);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>memory.push({ role: "model", parts: [{ text: reply }] });</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// 自动保存进度到本地存储</p>
+<p class="p1"><span class="Apple-converted-space">            </span>localStorage.setItem('club_save', JSON.stringify(memory));</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>} catch (err) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const errNode = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>errNode.className = "system-tip";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>errNode.textContent = "连接超时或 Key 无效，请检查网络。";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>log.appendChild(errNode);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} finally {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>loader.style.display = "none";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>log.scrollTop = log.scrollHeight;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// 自动加载存档</p>
+<p class="p1"><span class="Apple-converted-space">    </span>window.onload = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const saved = localStorage.getItem('club_save');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if(saved) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>memory = JSON.parse(saved);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const tip = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>tip.className = "system-tip";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>tip.textContent = "—— 已自动加载上次的经营进度 ——";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById('game-log').appendChild(tip);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
